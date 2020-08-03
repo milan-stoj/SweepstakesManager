@@ -12,6 +12,8 @@ namespace Sweepstakes
         {
             Console.Write("Enter the {0}:", prompt);
             return Console.ReadLine();
+
+
         }
     }
 }
