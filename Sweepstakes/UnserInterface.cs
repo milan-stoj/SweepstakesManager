@@ -8,6 +8,10 @@ namespace Sweepstakes
 {
     class UnserInterface
     {
-
+        public static string GetUserInputFor(string prompt)
+        {
+            Console.Write("Enter the {0}:", prompt);
+            return Console.ReadLine();
+        }
     }
 }

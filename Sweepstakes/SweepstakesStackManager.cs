@@ -9,7 +9,6 @@ namespace Sweepstakes
     class SweepstakesStackManager : ISweepstakesManager
     {
 
-
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
 
@@ -19,6 +18,5 @@ namespace Sweepstakes
         {
             return null;
         }
-
     }
 }
