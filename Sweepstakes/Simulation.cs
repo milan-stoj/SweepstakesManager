@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    class Program
+    class Simulation
     {
-        static void Main(string[] args)
+
+
+
+        public void CreateMarketingFirmWithManager()
         {
 
         }
