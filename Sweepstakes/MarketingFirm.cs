@@ -8,7 +8,12 @@ namespace Sweepstakes
 {
     class MarketingFirm
     {
-        public ISweepstakesManager _manager;
+        private ISweepstakesManager _manager;
+
+        public ISweepstakesManager Manager
+        {
+            get => _manager;
+        }
 
         // constructor injection
         public MarketingFirm(ISweepstakesManager manager)
@@ -18,7 +23,9 @@ namespace Sweepstakes
 
         public void CreateSweeptakes()
         {
-            Sweepstakes sweepStakes = new Sweepstakes(UserInterface.GetUserInputFor("Sweepstakes Name"));
+            Console.Clear();
+            Sweepstakes sweepStakes = new Sweepstakes(UserInterface.GetUserInputFor("Enter Sweepstakes Name: "));
+            _manager.InsertSweepstakes(sweepStakes);
         }
     }
 }

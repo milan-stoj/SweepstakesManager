@@ -20,7 +20,8 @@ namespace Sweepstakes
                 case '2':
                     return new SweepstakesStackManager();
                 default:
-                    Console.Write("\t[Not a valid choice!]");
+                    UserInterface.ClearCurrentConsoleLine();
+                    Console.Write("Not a valid choice!");
                     return SelectManager();
             }
         }

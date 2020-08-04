@@ -9,8 +9,7 @@ namespace Sweepstakes
 {
     public class Sweepstakes
     {
-        int registrationNumber;
-        Dictionary<int, Contestant> contestants;
+        public Dictionary<int, Contestant> contestants;
         private string name;
         public string Name
         {
@@ -23,9 +22,9 @@ namespace Sweepstakes
             contestants = new Dictionary<int, Contestant>();
         }
 
-        public void RegisterContestant(Contestant contestant)
+        public void RegisterContestant()
         {
-            contestant = new Contestant(
+            Contestant contestant = new Contestant(
                 UserInterface.GetUserInputFor("First Name"),
                 UserInterface.GetUserInputFor("Last Name"),
                 UserInterface.GetUserInputFor("Email Address"),
@@ -45,6 +44,14 @@ namespace Sweepstakes
         public void PrintContestantInfo(Contestant contestant)
         {
 
+        }
+
+        public void PrintContestants()
+        {
+            foreach (int key in contestants.Keys)
+            {
+                Console.WriteLine(contestants[key].FirstName);
+            }
         }
     }
 }

@@ -17,12 +17,23 @@ namespace Sweepstakes
 
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
-
+            queue.Enqueue(sweepstakes);
+            //UserInterface.DisplayAction();
         }
 
         public Sweepstakes GetSweepstakes()
         {
-            return null;
+
+            UserInterface.PrintSelections(queue);
+            return queue.Peek();
+        }
+
+        public void ViewSweepstakes()
+        {
+            foreach (Sweepstakes sweepstakes in queue)
+            {
+                Console.WriteLine(sweepstakes.Name);
+            }
         }
 
     }

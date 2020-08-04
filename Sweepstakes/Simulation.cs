@@ -11,9 +11,11 @@ namespace Sweepstakes
         MarketingFirm firm;
         public Simulation()
         {
-            UserInterface.PrintApplicationHeader();
             CreateMarketingFirmWithManager();
-            MainMenu();
+            while (true)
+            {
+                MainMenu();
+            }
         }
 
 
@@ -25,7 +27,7 @@ namespace Sweepstakes
 
         public void MainMenu()
         {
-            string[] choices = { "1.) Create Sweepstakes", "2.) View Sweepstakes" };
+            string[] choices = { "1.) Create Sweepstakes", "2.) Open Sweepstakes" };
             UserInterface.PrintSelections(choices);
             char type = UserInterface.GetMenuInputFor("Select an Action: ");
             switch (type)
@@ -34,12 +36,45 @@ namespace Sweepstakes
                     firm.CreateSweeptakes();
                     break;
                 case '2':
-                    firm._manager.GetSweepstakes();
+                    SweepstakesMenu(firm.Manager.GetSweepstakes());
+                    break;
                 default:
                     Console.Write("\t[Not a valid choice!]");
                     MainMenu();
+                    break;
             }
 
+        }
+
+        public void SweepstakesMenu(Sweepstakes sweepstakes)
+        {
+            string[] choices = { "1.) Add Contestant", "2.) View Contestants", "3.) Pick Winner", "4.) Return to Main" };
+            UserInterface.PrintSelections(choices);
+            char type = UserInterface.GetMenuInputFor("Select an Action: ");
+            switch (type)
+            {
+                case '1':
+                    sweepstakes.RegisterContestant();
+                    SweepstakesMenu(sweepstakes);
+                    break;
+                case '2':
+                    sweepstakes.PrintContestants();
+                    Console.ReadLine();
+                    SweepstakesMenu(sweepstakes);
+                    break;
+                case '3':
+                    sweepstakes.PickWinner();
+                    SweepstakesMenu(sweepstakes);
+                    break;
+                case '4':
+                    sweepstakes.PrintContestants();
+                    MainMenu();
+                    break;
+                default:
+                    Console.Write("\t[Not a valid choice!]");
+                    SweepstakesMenu(sweepstakes);
+                    break;
+            }
         }
 
 
