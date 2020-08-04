@@ -10,17 +10,19 @@ namespace Sweepstakes
     {
         public Simulation()
         {
+            UserInterface.PrintApplicationHeader();
             CreateMarketingFirmWithManager();
 
+
+            UserInterface.GetMenuInputFor("Select an Action: ");
 
         }
 
 
         public void CreateMarketingFirmWithManager()
         {
-            ISweepstakesManager manager;
-            manager = new ISweepstakesManager;
-            MarketingFirm firm = new MarketingFirm();
+            ISweepstakesManager manager = new ManagerFactory().SelectManager();
+            MarketingFirm firm = new MarketingFirm(manager);
         }
     }
 }

@@ -8,15 +8,20 @@ namespace Sweepstakes
 {
     class ManagerFactory : ICreateManagers
     {
-        public ISweepstakesManager SelectManager(string type)
+        public ISweepstakesManager SelectManager()
         {
-            if (type == "Queue")
+            string[] choices = { "1.) Queue", "2.) Stack" };
+            UserInterface.PrintSelections(choices);
+            char type = UserInterface.GetMenuInputFor("Select manager type: ");
+            switch (type)
             {
-                return new SweepstakesQueueManager();
-            }
-            else
-            {
-                return new SweepstakesQueueManager();
+                case '1':
+                    return new SweepstakesQueueManager();
+                case '2':
+                    return new SweepstakesStackManager();
+                default:
+                    Console.Write("\t[Not a valid choice!]");
+                    return SelectManager();
             }
         }
     }
