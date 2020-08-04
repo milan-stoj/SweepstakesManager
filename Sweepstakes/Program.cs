@@ -10,7 +10,8 @@ namespace Sweepstakes
     {
         static void Main(string[] args)
         {
-
+            Simulation sim = new Simulation();
+            sim.CreateMarketingFirmWithManager();
         }
     }
 }

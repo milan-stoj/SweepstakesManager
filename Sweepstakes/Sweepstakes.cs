@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    class Sweepstakes
+    public class Sweepstakes
     {
         Dictionary<int, Contestant> contestants;
         private string name;
@@ -24,7 +24,8 @@ namespace Sweepstakes
 
         public void RegisterContestant(Contestant contestant)
         {
-
+            Console.WriteLine("Please enter first name: ");
+            UserInter
         }
 
         public void PickWinner()
