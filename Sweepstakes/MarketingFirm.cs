@@ -8,7 +8,7 @@ namespace Sweepstakes
 {
     class MarketingFirm
     {
-        ISweepstakesManager _manager;
+        public ISweepstakesManager _manager;
 
         // constructor injection
         public MarketingFirm(ISweepstakesManager manager)
