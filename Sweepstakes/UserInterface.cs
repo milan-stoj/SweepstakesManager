@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    static class UnserInterface
+    static class UserInterface
     {
         public static string GetUserInputFor(string prompt)
         {
-            Console.Write("Enter the {0}:", prompt);
+            Console.Write($"{prompt}: ");
             return Console.ReadLine();
         }
     }

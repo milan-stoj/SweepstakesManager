@@ -8,5 +8,6 @@ namespace Sweepstakes
 {
     interface ICreateManagers
     {
+        ISweepstakesManager SelectManager(string type);
     }
 }

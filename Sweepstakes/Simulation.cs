@@ -8,12 +8,19 @@ namespace Sweepstakes
 {
     class Simulation
     {
+        public Simulation()
+        {
+            CreateMarketingFirmWithManager();
 
+
+        }
 
 
         public void CreateMarketingFirmWithManager()
         {
-
+            ISweepstakesManager manager;
+            manager = new ISweepstakesManager;
+            MarketingFirm firm = new MarketingFirm();
         }
     }
 }

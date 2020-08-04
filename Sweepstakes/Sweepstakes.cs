@@ -9,6 +9,7 @@ namespace Sweepstakes
 {
     public class Sweepstakes
     {
+        int registrationNumber;
         Dictionary<int, Contestant> contestants;
         private string name;
         public string Name
@@ -24,13 +25,21 @@ namespace Sweepstakes
 
         public void RegisterContestant(Contestant contestant)
         {
-            Console.WriteLine("Please enter first name: ");
-            UserInter
+            contestant = new Contestant(
+                UserInterface.GetUserInputFor("First Name"),
+                UserInterface.GetUserInputFor("Last Name"),
+                UserInterface.GetUserInputFor("Email Address"),
+                Convert.ToInt32(UserInterface.GetUserInputFor("Registration Number")));
+            
+            contestants.Add(contestant.RegistrationNumber, contestant);
         }
 
         public void PickWinner()
         {
-
+            List<int> listOfKeys = new List<int>(contestants.Keys);
+            Random rand = new Random();
+            int randomKey = listOfKeys[rand.Next(listOfKeys.Count)];
+            Contestant winner = contestants[randomKey];
         }
 
         public void PrintContestantInfo(Contestant contestant)
