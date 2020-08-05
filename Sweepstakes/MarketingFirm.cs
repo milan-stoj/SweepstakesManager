@@ -23,7 +23,7 @@ namespace Sweepstakes
 
         public void CreateSweeptakes()
         {
-            Console.Clear();
+            UserInterface.ClearPrintingArea();
             Sweepstakes sweepStakes = new Sweepstakes(UserInterface.GetUserInputFor("Enter Sweepstakes Name: "));
             _manager.InsertSweepstakes(sweepStakes);
         }

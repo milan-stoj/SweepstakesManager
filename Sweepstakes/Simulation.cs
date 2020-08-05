@@ -22,6 +22,7 @@ namespace Sweepstakes
 
         public void CreateMarketingFirmWithManager()
         {
+            UserInterface.PrintStatus("Welcome to the Sweepstakes Manager");
             ISweepstakesManager manager = new ManagerFactory().SelectManager();
             firm = new MarketingFirm(manager);
         }
@@ -35,12 +36,20 @@ namespace Sweepstakes
             switch (type)
             {
                 case '1':
+                    UserInterface.PrintStatus("Creating Sweepstakes");
                     firm.CreateSweeptakes();
                     break;
                 case '2':
+                    if (firm.Manager.SweepStakesCount() == 0)
+                    {
+                        UserInterface.PrintStatus("No sweepstakes have been created. Create a sweepstakes first");
+                        MainMenu();
+                        break;
+                    }
                     SweepstakesMenu(firm.Manager.GetSweepstakes());
                     break;
                 default:
+                    UserInterface.PrintStatus("Incorrect selection entered. Try Again");
                     MainMenu();
                     break;
             }
@@ -59,7 +68,6 @@ namespace Sweepstakes
                     SweepstakesMenu(sweepstakes);
                     break;
                 case '2':
-                    Console.ReadLine();
                     SweepstakesMenu(sweepstakes);
                     break;
                 case '3':

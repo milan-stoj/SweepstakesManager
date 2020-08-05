@@ -1,30 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-   class Contestant : IContestant 
+    class Winner : IContestant
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public int RegistrationNumber { get; set; }
 
-        public Contestant(string FirstName, string LastName, string EmailAddress, int RegistrationNumber)
+        public Winner(IContestant contestant)
         {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.EmailAddress = EmailAddress;
-            this.RegistrationNumber = RegistrationNumber;
+            FirstName = contestant.FirstName;
+            LastName = contestant.LastName;
+            EmailAddress = contestant.LastName;
+            RegistrationNumber = contestant.RegistrationNumber;
         }
-
         public void Notify(IContestant contestant)
         {
-            Console.Write("Sorry {0} You have lost the sweepstakes!\n", contestant.FirstName);
+            Console.Write("Congratulations {0} You have won the sweepstakes!\n", contestant.FirstName);
         }
-
     }
 }

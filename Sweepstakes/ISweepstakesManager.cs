@@ -14,5 +14,7 @@ namespace Sweepstakes
         Sweepstakes GetSweepstakes();
 
         void ViewSweepstakes();
+
+        int SweepStakesCount();
     }
 }

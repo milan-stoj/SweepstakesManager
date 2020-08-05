@@ -10,19 +10,15 @@ namespace Sweepstakes
     public class Sweepstakes
     {
         int registrationNumber;
-        public Dictionary<int, Contestant> contestants;
-        Contestant winner;
-        private string name;
-        public string Name
-        {
-            get => name;
-        }
+        Dictionary<int, IContestant> contestants;
+
+        public string Name { get; }
 
         public Sweepstakes(string name)
         {
             registrationNumber = 1000;
-            this.name = name;
-            contestants = new Dictionary<int, Contestant>();
+            Name = name;
+            contestants = new Dictionary<int, IContestant>();
         }
 
         public void RegisterContestant()
@@ -42,10 +38,10 @@ namespace Sweepstakes
             List<int> listOfKeys = new List<int>(contestants.Keys);
             Random rand = new Random();
             int randomKey = listOfKeys[rand.Next(listOfKeys.Count)];
-            winner = contestants[randomKey];
+            contestants[randomKey] = new Winner(contestants[randomKey]);
         }
 
-        public void PrintContestantInfo(Contestant contestant)
+        public void PrintContestantInfo(IContestant contestant)
         {
             UserInterface.PrintContestantInfo(contestant);
         }

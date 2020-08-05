@@ -16,11 +16,13 @@ namespace Sweepstakes
             switch (type)
             {
                 case '1':
+                    UserInterface.PrintStatus("Queue Management Selected");
                     return new SweepstakesQueueManager();
                 case '2':
+                    UserInterface.PrintStatus("Stack Management Selected");
                     return new SweepstakesStackManager();
                 default:
-                    UserInterface.ClearCurrentConsoleLine();
+                    UserInterface.PrintStatus("Incorrect selection entered. Try Again");
                     return SelectManager();
             }
         }

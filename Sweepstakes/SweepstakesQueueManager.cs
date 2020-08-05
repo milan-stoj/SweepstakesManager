@@ -23,7 +23,10 @@ namespace Sweepstakes
 
         public Sweepstakes GetSweepstakes()
         {
-
+            if (queue.Count == 0)
+            {
+                ;
+            }
             UserInterface.PrintSelections(queue);
             return queue.Peek();
         }
@@ -31,6 +34,11 @@ namespace Sweepstakes
         public void ViewSweepstakes()
         {
             UserInterface.PrintSweepstakes(queue);
+        }
+
+        public int SweepStakesCount()
+        {
+            return queue.Count();
         }
 
     }

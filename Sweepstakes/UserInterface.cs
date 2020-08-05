@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    static class UserInterface
+    public static class UserInterface
     {
         public static void PrintSelections(string[] choices)
         {
@@ -43,14 +44,32 @@ namespace Sweepstakes
 
         public static void SetPrintingCursorPosition()
         {
-            Console.Clear();
-            Console.SetCursorPosition(0, 2);
+            ClearPrintingArea();
+            Console.SetCursorPosition(0, 5);
+        }
+
+        public static void PrintStatus(string status)
+        {
+            Console.SetCursorPosition(0, 0);
+            ClearCurrentConsoleLine();
+            Console.Write($"{status}");
         }
 
         private static void SetInputCursorPosition()
         {
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, 3);
             ClearCurrentConsoleLine();
+        }
+
+        public static void ClearPrintingArea()
+        {
+            for (int h = 0; h < Console.WindowHeight; h++)
+            {
+                Console.SetCursorPosition(0, h + 5);
+                Console.Write(new string(' ', Console.WindowWidth));
+                Console.SetCursorPosition(0, h + 5);
+            }
+            Console.SetCursorPosition(0, 0);
         }
 
         public static void ClearCurrentConsoleLine()
@@ -61,9 +80,9 @@ namespace Sweepstakes
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
-        public static void PrintContestantInfo(Contestant contestant)
+        public static void PrintContestantInfo(IContestant contestant)
         {
-            Console.Clear();
+            ClearPrintingArea();
             Console.WriteLine($"First name:     {contestant.FirstName}");
             Console.WriteLine($"Last name:      {contestant.LastName}");
             Console.WriteLine($"Email address:  {contestant.FirstName}");

@@ -29,5 +29,10 @@ namespace Sweepstakes
         {
             UserInterface.PrintSweepstakes(stack);
         }
+
+        public int SweepStakesCount()
+        {
+            return stack.Count();
+        }
     }
 }
