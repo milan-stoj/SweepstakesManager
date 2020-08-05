@@ -15,7 +15,6 @@ namespace Sweepstakes
             get => _manager;
         }
 
-        // constructor injection
         public MarketingFirm(ISweepstakesManager manager)
         {
             _manager = manager;

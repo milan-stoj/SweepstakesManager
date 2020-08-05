@@ -1,0 +1,15 @@
+Purpose:
+Documentation of dependency injection examples, and benefits added to the structure of the application. 
+
+Examples:
+MarketingFirm.cs - Line 19
+Constructor Injection
+Marketing Firm constructor takes a manager object of type ISweepstakesManager - allowing both Queue managers and Stack managert types to be used.
+
+Contestant.cs - Line 24 && Winner.cs - Line 24
+Method Injection
+Marketing Firm takes a contestant object of type IContestant - allowing both winner types and base contestant types to pass into the method and return different results.
+
+Sweepstakes.cs - Line 13
+Property Injection
+The contestant object consists of a dictionary that holds keys of int and values of type IContestant - allowing Contestant and Winner objects implementing IContestant interfaces to be stored and called in the dictionary.
