@@ -13,11 +13,9 @@ namespace Sweepstakes
         public Simulation()
         {
             CreateMarketingFirmWithManager();
-            while (true)
-            {
                 MainMenu();
-            }
         }
+
 
         public void CreateMarketingFirmWithManager()
         {
@@ -28,7 +26,7 @@ namespace Sweepstakes
 
         public void MainMenu()
         {
-            string[] choices = { "1.) Create Sweepstakes", "2.) Open Pending Sweepstakes" };
+            string[] choices = { "1.) Create Sweepstakes", "2.) Open Next Sweepstakes", "3.) Quit" };
             UserInterface.PrintSelections(choices);
             firm.Manager.ViewSweepstakes();
             char type = UserInterface.GetMenuInputFor("Select an Action: ");
@@ -37,22 +35,25 @@ namespace Sweepstakes
                 case '1':
                     UserInterface.PrintStatus("Creating Sweepstakes");
                     firm.CreateSweeptakes();
+                    MainMenu();
                     break;
                 case '2':
                     if (firm.Manager.SweepStakesCount() == 0)
                     {
-                        UserInterface.PrintStatus("No sweepstakes have been created. Create a sweepstakes first.");
+                        UserInterface.PrintStatus("No sweepstakes are currently pending. Create a sweepstakes first.");
                         MainMenu();
                         break;
                     }
                     SweepstakesMenu(firm.Manager.GetSweepstakes());
+                    MainMenu();
+                    break;
+                case '3':
                     break;
                 default:
                     UserInterface.PrintStatus("Incorrect selection entered. Try Again");
                     MainMenu();
                     break;
             }
-
         }
 
         public void SweepstakesMenu(Sweepstakes sweepstakes)
@@ -93,6 +94,7 @@ namespace Sweepstakes
                     UserInterface.PrintStatus($"Back to Main Menu.");
                     break;
                 default:
+                    UserInterface.PrintStatus("Incorrect selection entered. Try Again");
                     SweepstakesMenu(sweepstakes);
                     break;
             }
