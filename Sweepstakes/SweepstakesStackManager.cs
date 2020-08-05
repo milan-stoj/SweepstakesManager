@@ -22,12 +22,17 @@ namespace Sweepstakes
 
         public Sweepstakes GetSweepstakes()
         {
-            return null;
+            return stack.Peek();
         }
 
         public void ViewSweepstakes()
         {
             UserInterface.PrintSweepstakes(stack);
+        }
+
+        public void CloseSweepstakes()
+        {
+            stack.Pop();
         }
 
         public int SweepStakesCount()

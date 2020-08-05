@@ -23,12 +23,12 @@ namespace Sweepstakes
 
         public Sweepstakes GetSweepstakes()
         {
-            if (queue.Count == 0)
-            {
-                ;
-            }
-            UserInterface.PrintSelections(queue);
             return queue.Peek();
+        }
+
+        public void CloseSweepstakes()
+        {
+            queue.Dequeue();
         }
 
         public void ViewSweepstakes()

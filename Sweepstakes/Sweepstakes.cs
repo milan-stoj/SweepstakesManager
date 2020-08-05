@@ -10,7 +10,7 @@ namespace Sweepstakes
     public class Sweepstakes
     {
         int registrationNumber;
-        Dictionary<int, IContestant> contestants;
+        public Dictionary<int, IContestant> contestants;
 
         public string Name { get; }
 
@@ -23,6 +23,7 @@ namespace Sweepstakes
 
         public void RegisterContestant()
         {
+            UserInterface.ClearPrintingArea();
             Contestant contestant = new Contestant(
                 UserInterface.GetUserInputFor("First Name: "),
                 UserInterface.GetUserInputFor("Last Name: "),
@@ -39,11 +40,30 @@ namespace Sweepstakes
             Random rand = new Random();
             int randomKey = listOfKeys[rand.Next(listOfKeys.Count)];
             contestants[randomKey] = new Winner(contestants[randomKey]);
+            UserInterface.PrintWinner(contestants[randomKey]);
+            NotifyContestents();
+        }
+
+        public void DisplayContestants()
+        {
+            UserInterface.PrintContestantInfo(contestants);
+        }
+
+        public bool CheckForContestant(string key)
+        {
+            bool newKey = int.TryParse(key, out int keyInt);
+            return newKey && contestants.ContainsKey(keyInt);
         }
 
         public void PrintContestantInfo(IContestant contestant)
         {
             UserInterface.PrintContestantInfo(contestant);
         }
+
+        public void NotifyContestents()
+        {
+            UserInterface.SendNotifications(contestants);
+        }
+
     }
 }

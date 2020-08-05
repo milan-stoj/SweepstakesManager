@@ -16,10 +16,10 @@ namespace Sweepstakes
             switch (type)
             {
                 case '1':
-                    UserInterface.PrintStatus("Queue Management Selected");
+                    UserInterface.PrintStatus("Queue Management Method Selected (FIFO)");
                     return new SweepstakesQueueManager();
                 case '2':
-                    UserInterface.PrintStatus("Stack Management Selected");
+                    UserInterface.PrintStatus("Stack Management Method Selected (FILO)");
                     return new SweepstakesStackManager();
                 default:
                     UserInterface.PrintStatus("Incorrect selection entered. Try Again");

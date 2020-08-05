@@ -80,18 +80,59 @@ namespace Sweepstakes
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
+        public static void PrintContestantInfo(Dictionary<int, IContestant> contestants)
+        {
+            Console.WriteLine($"\nReg. # \tFirst Name");
+            Console.WriteLine($"---------------------------------");
+            foreach (KeyValuePair<int, IContestant> contestant in contestants)
+            {
+                Console.WriteLine($"{contestant.Value.RegistrationNumber} \t{contestant.Value.FirstName}");
+            }
+        }
+
+
+        public static void PrintWinner(IContestant winner)
+        {
+            ClearPrintingArea();
+            SetPrintingCursorPosition();
+            Console.WriteLine($"WINNER! {winner.FirstName}");
+            Console.WriteLine($"Last Name: {winner.LastName}");
+            Console.WriteLine($"Email: {winner.EmailAddress}");
+            Console.WriteLine($"Registration: {winner.RegistrationNumber}");
+            Console.WriteLine($"---------------------------------");
+            Console.WriteLine($"Press enter to send notifications, close the sweepstakes, and return to main sweepstakes menu.");
+            Console.ReadLine();
+        }
+
+        public static void SendNotifications(Dictionary<int, IContestant> contestants)
+        {
+            ClearPrintingArea();
+            SetPrintingCursorPosition();
+            foreach (KeyValuePair<int, IContestant> contestant in contestants)
+            {
+                Console.Write($"Message to {contestant.Value.EmailAddress}: \t");
+                contestant.Value.Notify(contestant.Value);
+            }
+            Console.ReadLine();
+        }
+
+
         public static void PrintContestantInfo(IContestant contestant)
         {
             ClearPrintingArea();
-            Console.WriteLine($"First name:     {contestant.FirstName}");
-            Console.WriteLine($"Last name:      {contestant.LastName}");
-            Console.WriteLine($"Email address:  {contestant.FirstName}");
-            Console.WriteLine($"Registration #: {contestant.RegistrationNumber}");
+            SetPrintingCursorPosition();
+            Console.WriteLine($"Info for contestant {contestant.FirstName}");
+            Console.WriteLine($"Last Name: {contestant.LastName}");
+            Console.WriteLine($"Email: {contestant.EmailAddress}");
+            Console.WriteLine($"Registration: {contestant.RegistrationNumber}");
+            Console.WriteLine($"---------------------------------");
+            Console.WriteLine($"Press enter to return to sweepstakes menu");
+            Console.ReadLine();
         }
 
         public static void PrintSweepstakes(Stack<Sweepstakes> stack)
         {
-            Console.WriteLine("\nCurrently Opened Sweepstakes: ");
+            Console.WriteLine("\nCurrently Pending Sweepstakes (FILO): ");
             foreach (Sweepstakes sweepstakes in stack)
             {
                 Console.WriteLine(sweepstakes.Name);
@@ -100,7 +141,7 @@ namespace Sweepstakes
 
         public static void PrintSweepstakes(Queue<Sweepstakes> queue)
         {
-            Console.WriteLine("\nCurrently Opened Sweepstakes: ");
+            Console.WriteLine("\nCurrently Pending Sweepstakes (FIFO): ");
             foreach (Sweepstakes sweepstakes in queue)
             {
                 Console.WriteLine(sweepstakes.Name);

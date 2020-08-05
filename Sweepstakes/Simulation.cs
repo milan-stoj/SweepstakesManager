@@ -29,7 +29,7 @@ namespace Sweepstakes
 
         public void MainMenu()
         {
-            string[] choices = { "1.) Create Sweepstakes", "2.) Start Next Sweepstakes" };
+            string[] choices = { "1.) Create Sweepstakes", "2.) Open Pending Sweepstakes" };
             UserInterface.PrintSelections(choices);
             firm.Manager.ViewSweepstakes();
             char type = UserInterface.GetMenuInputFor("Select an Action: ");
@@ -42,7 +42,7 @@ namespace Sweepstakes
                 case '2':
                     if (firm.Manager.SweepStakesCount() == 0)
                     {
-                        UserInterface.PrintStatus("No sweepstakes have been created. Create a sweepstakes first");
+                        UserInterface.PrintStatus("No sweepstakes have been created. Create a sweepstakes first.");
                         MainMenu();
                         break;
                     }
@@ -58,8 +58,10 @@ namespace Sweepstakes
 
         public void SweepstakesMenu(Sweepstakes sweepstakes)
         {
+            UserInterface.PrintStatus($"Welcome to the Management Menu for {sweepstakes.Name}");
             string[] choices = { "1.) Add Contestant", "2.) View Contestant", "3.) Pick Winner" };
             UserInterface.PrintSelections(choices);
+            sweepstakes.DisplayContestants();
             char type = UserInterface.GetMenuInputFor("Select an Action: ");
             switch (type)
             {
@@ -68,20 +70,33 @@ namespace Sweepstakes
                     SweepstakesMenu(sweepstakes);
                     break;
                 case '2':
-                    SweepstakesMenu(sweepstakes);
+                    while (true)
+                    {
+                        string contestant = UserInterface.GetUserInputFor("Enter Registration Number for more info: ");
+                        if (sweepstakes.CheckForContestant(contestant) == true)
+                        {
+                            sweepstakes.PrintContestantInfo(sweepstakes.contestants[Convert.ToInt32(contestant)]);
+                            SweepstakesMenu(sweepstakes);
+                            break;
+                        }
+                        else if (sweepstakes.CheckForContestant(contestant) == false)
+                        {
+                            UserInterface.PrintStatus($"{contestant} was not a valid registration number. Try again");
+                        }
+                    }
                     break;
                 case '3':
                     sweepstakes.PickWinner();
-                    SweepstakesMenu(sweepstakes);
+                    firm.Manager.CloseSweepstakes();
+                    UserInterface.PrintStatus($"Back to main menu.");
+                    break;
+                 case '4':
+                    UserInterface.PrintStatus($"Back to Main Menu.");
                     break;
                 default:
                     SweepstakesMenu(sweepstakes);
                     break;
             }
         }
-
-
-
-
     }
 }
