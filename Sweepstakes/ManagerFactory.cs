@@ -21,7 +21,6 @@ namespace Sweepstakes
                     return new SweepstakesStackManager();
                 default:
                     UserInterface.ClearCurrentConsoleLine();
-                    Console.Write("Not a valid choice!");
                     return SelectManager();
             }
         }

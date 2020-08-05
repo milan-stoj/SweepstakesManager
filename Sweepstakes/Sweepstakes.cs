@@ -9,7 +9,9 @@ namespace Sweepstakes
 {
     public class Sweepstakes
     {
+        int registrationNumber;
         public Dictionary<int, Contestant> contestants;
+        Contestant winner;
         private string name;
         public string Name
         {
@@ -18,6 +20,7 @@ namespace Sweepstakes
 
         public Sweepstakes(string name)
         {
+            registrationNumber = 1000;
             this.name = name;
             contestants = new Dictionary<int, Contestant>();
         }
@@ -28,7 +31,8 @@ namespace Sweepstakes
                 UserInterface.GetUserInputFor("First Name: "),
                 UserInterface.GetUserInputFor("Last Name: "),
                 UserInterface.GetUserInputFor("Email Address: "),
-                Convert.ToInt32(UserInterface.GetUserInputFor("Registration Number: ")));
+                registrationNumber);
+            registrationNumber++;
             
             contestants.Add(contestant.RegistrationNumber, contestant);
         }
@@ -38,20 +42,12 @@ namespace Sweepstakes
             List<int> listOfKeys = new List<int>(contestants.Keys);
             Random rand = new Random();
             int randomKey = listOfKeys[rand.Next(listOfKeys.Count)];
-            Contestant winner = contestants[randomKey];
+            winner = contestants[randomKey];
         }
 
         public void PrintContestantInfo(Contestant contestant)
         {
-
-        }
-
-        public void PrintContestants()
-        {
-            foreach (int key in contestants.Keys)
-            {
-                Console.WriteLine(contestants[key].FirstName);
-            }
+            UserInterface.PrintContestantInfo(contestant);
         }
     }
 }

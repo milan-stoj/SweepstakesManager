@@ -28,7 +28,7 @@ namespace Sweepstakes
 
         public void MainMenu()
         {
-            string[] choices = { "1.) Create Sweepstakes", "2.) Open Sweepstakes" };
+            string[] choices = { "1.) Create Sweepstakes", "2.) Start Next Sweepstakes" };
             UserInterface.PrintSelections(choices);
             firm.Manager.ViewSweepstakes();
             char type = UserInterface.GetMenuInputFor("Select an Action: ");
@@ -41,7 +41,6 @@ namespace Sweepstakes
                     SweepstakesMenu(firm.Manager.GetSweepstakes());
                     break;
                 default:
-                    Console.Write("\t[Not a valid choice!]");
                     MainMenu();
                     break;
             }
@@ -50,7 +49,7 @@ namespace Sweepstakes
 
         public void SweepstakesMenu(Sweepstakes sweepstakes)
         {
-            string[] choices = { "1.) Add Contestant", "2.) View Contestants", "3.) Pick Winner", "4.) Return to Main" };
+            string[] choices = { "1.) Add Contestant", "2.) View Contestant", "3.) Pick Winner" };
             UserInterface.PrintSelections(choices);
             char type = UserInterface.GetMenuInputFor("Select an Action: ");
             switch (type)
@@ -60,7 +59,6 @@ namespace Sweepstakes
                     SweepstakesMenu(sweepstakes);
                     break;
                 case '2':
-                    sweepstakes.PrintContestants();
                     Console.ReadLine();
                     SweepstakesMenu(sweepstakes);
                     break;
@@ -68,12 +66,7 @@ namespace Sweepstakes
                     sweepstakes.PickWinner();
                     SweepstakesMenu(sweepstakes);
                     break;
-                case '4':
-                    sweepstakes.PrintContestants();
-                    MainMenu();
-                    break;
                 default:
-                    Console.Write("\t[Not a valid choice!]");
                     SweepstakesMenu(sweepstakes);
                     break;
             }
