@@ -19,7 +19,6 @@ namespace Sweepstakes
             }
         }
 
-
         public void CreateMarketingFirmWithManager()
         {
             UserInterface.PrintStatus("Welcome to the Sweepstakes Manager");

@@ -18,7 +18,7 @@ namespace Sweepstakes
         {
             FirstName = contestant.FirstName;
             LastName = contestant.LastName;
-            EmailAddress = contestant.LastName;
+            EmailAddress = contestant.EmailAddress;
             RegistrationNumber = contestant.RegistrationNumber;
         }
         public void Notify(IContestant contestant)

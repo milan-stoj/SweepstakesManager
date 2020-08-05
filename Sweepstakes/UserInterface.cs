@@ -5,6 +5,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
 namespace Sweepstakes
 {
@@ -90,8 +93,7 @@ namespace Sweepstakes
             }
         }
 
-
-        public static void PrintWinner(IContestant winner)
+        public static void PrintWinner(IContestant winner, string sweepStakesName)
         {
             ClearPrintingArea();
             SetPrintingCursorPosition();
@@ -102,6 +104,7 @@ namespace Sweepstakes
             Console.WriteLine($"---------------------------------");
             Console.WriteLine($"Press enter to send notifications, close the sweepstakes, and return to main sweepstakes menu.");
             Console.ReadLine();
+            SendEmailToWinner(winner, sweepStakesName);
         }
 
         public static void SendNotifications(Dictionary<int, IContestant> contestants)
@@ -116,6 +119,34 @@ namespace Sweepstakes
             Console.ReadLine();
         }
 
+        public static void SendEmailToWinner(IContestant winner, string sweepStakesName)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Marketing Manager", "marketing.manager.devmarketing@gmail.com"));
+            message.To.Add(new MailboxAddress($"{winner.FirstName} {winner.LastName}", winner.EmailAddress));
+            message.Subject = "Congratulations!";
+
+            message.Body = new TextPart("plain")
+            {
+                Text = $@"Hey {winner.FirstName},
+
+You have won the {sweepStakesName} sweepstakes!
+
+-- Milan"
+            };
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+
+                // Note: only needed if the SMTP server requires authentication
+                client.AuthenticationMechanisms.Remove("XOAUTH2");
+                client.Authenticate("marketing.manager.devmarketing@gmail.com", "devCodeCamp");
+
+                client.Send(message);
+                client.Disconnect(true);
+            }
+        }
 
         public static void PrintContestantInfo(IContestant contestant)
         {

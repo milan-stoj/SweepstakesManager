@@ -40,7 +40,7 @@ namespace Sweepstakes
             Random rand = new Random();
             int randomKey = listOfKeys[rand.Next(listOfKeys.Count)];
             contestants[randomKey] = new Winner(contestants[randomKey]);
-            UserInterface.PrintWinner(contestants[randomKey]);
+            UserInterface.PrintWinner(contestants[randomKey], Name);
             NotifyContestents();
         }
 

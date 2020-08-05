@@ -10,9 +10,9 @@ namespace Sweepstakes
     {
         public ISweepstakesManager SelectManager()
         {
-            string[] choices = { "1.) Queue", "2.) Stack" };
+            string[] choices = { "1.) Queue Method (FIFO)", "2.) Stack Method (FILO)" };
             UserInterface.PrintSelections(choices);
-            char type = UserInterface.GetMenuInputFor("Select manager type: ");
+            char type = UserInterface.GetMenuInputFor("Select Management Type: ");
             switch (type)
             {
                 case '1':
