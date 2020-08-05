@@ -25,10 +25,10 @@ namespace Sweepstakes
         public void RegisterContestant()
         {
             Contestant contestant = new Contestant(
-                UserInterface.GetUserInputFor("First Name"),
-                UserInterface.GetUserInputFor("Last Name"),
-                UserInterface.GetUserInputFor("Email Address"),
-                Convert.ToInt32(UserInterface.GetUserInputFor("Registration Number")));
+                UserInterface.GetUserInputFor("First Name: "),
+                UserInterface.GetUserInputFor("Last Name: "),
+                UserInterface.GetUserInputFor("Email Address: "),
+                Convert.ToInt32(UserInterface.GetUserInputFor("Registration Number: ")));
             
             contestants.Add(contestant.RegistrationNumber, contestant);
         }

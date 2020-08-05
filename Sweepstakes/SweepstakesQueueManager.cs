@@ -30,10 +30,7 @@ namespace Sweepstakes
 
         public void ViewSweepstakes()
         {
-            foreach (Sweepstakes sweepstakes in queue)
-            {
-                Console.WriteLine(sweepstakes.Name);
-            }
+            UserInterface.PrintSweepstakes(queue);
         }
 
     }

@@ -24,5 +24,10 @@ namespace Sweepstakes
         {
             return null;
         }
+
+        public void ViewSweepstakes()
+        {
+            UserInterface.PrintSweepstakes(stack);
+        }
     }
 }

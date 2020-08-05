@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Sweepstakes
         {
             string[] choices = { "1.) Create Sweepstakes", "2.) Open Sweepstakes" };
             UserInterface.PrintSelections(choices);
+            firm.Manager.ViewSweepstakes();
             char type = UserInterface.GetMenuInputFor("Select an Action: ");
             switch (type)
             {

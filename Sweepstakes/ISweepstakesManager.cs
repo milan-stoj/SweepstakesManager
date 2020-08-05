@@ -12,5 +12,7 @@ namespace Sweepstakes
         void InsertSweepstakes(Sweepstakes sweepstakes);
 
         Sweepstakes GetSweepstakes();
+
+        void ViewSweepstakes();
     }
 }
